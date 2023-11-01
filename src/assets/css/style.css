@@ -1,0 +1,8 @@
+/*  Adobe Fonts */
+@import url("https://use.typekit.net/lgh3lyf.css");
+
+/*  Tailwind  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
