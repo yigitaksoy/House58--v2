@@ -3,20 +3,27 @@ import "./assets/css/style.css";
 import Hero from "./sections/Hero";
 import { GridPattern } from "./components/GridPattern";
 import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Intro } from "./components/Intro";
 
 function App() {
   return (
     <div className="font-objektiv">
       <BrowserRouter>
-        <AnimatePresence></AnimatePresence>
+        <AnimatePresence>
+          <header className="sticky top-0 z-50">
+            <Navbar />
+          </header>
+        </AnimatePresence>
         <AnimatePresence mode="wait">
-          <main className="relative isolate flex w-full flex-col bg-white mt-2 pt-14 overflow-hidden">
+          <main className="relative isolate flex w-full flex-col bg-house-black mt-2 pt-14 overflow-hidden">
             <GridPattern
-              className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-50 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
+              className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-house-bluelight stroke-house-600 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
               yOffset={-96}
               interactive
             />
             <Hero />
+            <Intro />
           </main>
         </AnimatePresence>
       </BrowserRouter>
