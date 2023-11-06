@@ -31,10 +31,10 @@ export default function Stack({ centered = false }) {
   return (
     <div
       id="stack"
-      className="relative isolate bg-neutral-50 py-16 sm:py-28 md:py-32"
+      className="relative isolate bg-white py-16 sm:py-28 md:py-32"
     >
       <GridPattern
-        className="absolute inset-0 -z-10 h-full w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
+        className="absolute inset-0 -z-10 h-full w-full fill-neutral-50 stroke-neutral-950/5 md:stroke-none [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
         yOffset={-256}
         interactive
       />
