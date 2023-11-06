@@ -14,7 +14,7 @@ const Services = () => {
         to ideas, and create sustainable digital products with a story!"
         className="mt-24 sm:mt-32 lg:mt-40"
       />
-      <Container className="mt-16">
+      <Container className="mt-16 mb-16">
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
             <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
