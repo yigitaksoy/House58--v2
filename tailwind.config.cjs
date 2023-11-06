@@ -33,7 +33,7 @@ module.exports = {
           cyan: "#24837B",
           cyanlight: "#3AA99F",
           blue: "#205EA6",
-          bluelight: "#4385BE",
+          bluelight: "#00bbff",
           purple: "#5E409D",
           purplelight: "#8B7EC8",
           magenta: "#A02F6F",
