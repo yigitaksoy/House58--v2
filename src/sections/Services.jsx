@@ -20,6 +20,7 @@ const Services = () => {
             <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
               <StylizedImage
                 src={servicesImg}
+                alt="services-image"
                 sizes="(min-width: 1024px) 41rem, 31rem"
                 className="justify-center lg:justify-end"
               />
