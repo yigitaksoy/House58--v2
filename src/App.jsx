@@ -1,11 +1,12 @@
 import { AnimatePresence } from "framer-motion";
 import "./assets/css/style.css";
-import Hero from "./sections/Hero";
 import { GridPattern } from "./components/GridPattern";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import TechStack from "./sections/TechStack";
+import Footer from "./sections/Footer";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             <Services />
             <TechStack />
           </main>
+          <footer>
+            <Footer />
+          </footer>
         </AnimatePresence>
       </BrowserRouter>
     </div>

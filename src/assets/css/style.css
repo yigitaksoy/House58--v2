@@ -13,6 +13,16 @@ html {
 }
 
 main {
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/*  Footer  */
+
+footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75dvh;
 }
