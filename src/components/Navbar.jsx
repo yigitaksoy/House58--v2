@@ -128,8 +128,8 @@ const Navbar = () => {
         }
       },
       {
-        root: null,
-        threshold: 0.1,
+        root: null, // viewport
+        threshold: 0.1, // Trigger when 50% of the hero section is visible
       },
     );
 
@@ -169,7 +169,7 @@ const Navbar = () => {
   return (
     <motion.nav
       id="navbar"
-      ref={navRef}
+      ref={navRef} // Attach the ref here
       variants={variants}
       initial={{ opacity: 0 }}
       animate={hidden ? "hidden" : "visible"}
@@ -185,12 +185,12 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          className={`object-fit w-44 h-26 transition duration-300 ${navColorClass}`}
+          className={`object-fit  transition duration-300 ${navColorClass}`}
         >
           <motion.img
             src={navLogo}
             alt="logo"
-            className="object-fit w-44 h-26 transition duration-300"
+            className="object-fit w-36 h-18 transition duration-300"
           />
         </Link>
       </motion.div>
