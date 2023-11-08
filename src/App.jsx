@@ -7,6 +7,7 @@ import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import TechStack from "./sections/TechStack";
 import Footer from "./sections/Footer";
+import ScrollTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Navbar />
           </header>
         </AnimatePresence>
+        <ScrollTop />
         <AnimatePresence mode="wait">
           <main className="relative isolate flex w-full flex-col bg-house-black mt-2 pt-14 overflow-hidden">
             <GridPattern
