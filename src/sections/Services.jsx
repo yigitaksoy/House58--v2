@@ -1,3 +1,6 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "../components/Container";
 import { FadeIn } from "../components/FadeIn";
 import { SectionIntro } from "../components/SectionIntro";
@@ -5,15 +8,53 @@ import { List, ListItem } from "../components/List";
 import { StylizedImage } from "../components/StylizedImage";
 import servicesImg from "../assets/images/services.png";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Services = () => {
+  const servicesRef = useRef();
+  const titleRef = useRef();
+
+  useEffect(() => {
+    gsap.to(servicesRef.current, {
+      backgroundColor: "#ffffff",
+      ease: "none",
+      scrollTrigger: {
+        trigger: servicesRef.current,
+        start: "top 60%",
+        end: "top 60%",
+        reverse: true,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    gsap.to(titleRef.current, {
+      opacity: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: servicesRef.current,
+        start: "top 60%",
+        end: "top 60%",
+        reverse: true,
+        onEnter: () => gsap.to(titleRef.current, { opacity: 1 }),
+        onLeaveBack: () => gsap.to(titleRef.current, { opacity: 0 }),
+      },
+    });
+
+    return () => {
+      // Clean up the ScrollTrigger instances
+      ScrollTrigger.getAll().forEach((instance) => instance.kill());
+    };
+  }, []);
   return (
-    <div className="bg-white">
-      <SectionIntro
-        eyebrow="Services"
-        title="We give life
+    <div ref={servicesRef}>
+      <div ref={titleRef}>
+        <SectionIntro
+          eyebrow="Services"
+          title="We give life
         to ideas, and create sustainable digital products with a story!"
-        className="mt-24 sm:mt-32 lg:mt-40"
-      />
+          className="mt-24 sm:mt-32 lg:mt-40"
+        />
+      </div>
       <Container className="mt-16 mb-16">
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
