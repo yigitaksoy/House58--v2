@@ -52,13 +52,13 @@ const Hero = () => {
     const moveText = (event) => {
       const { clientX, clientY } = event;
       const { left, top, width, height } = main.current.getBoundingClientRect();
-      const x = ((clientX - left - width / 2) / width) * 20; // strength of the effect
-      const y = ((clientY - top - height / 2) / height) * 20;
+      const x = ((clientX - left - width / 2) / width) * 8; // strength of the effect
+      const y = ((clientY - top - height / 2) / height) * 15;
 
       gsap.to([h1Ref.current, pRef.current], {
         x,
         y,
-        duration: 1,
+        duration: 0.5,
         ease: "power1.out",
       });
     };
