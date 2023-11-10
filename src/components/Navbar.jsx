@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Logo from "../assets/images/logos/house58.png";
+import MobileNav from "./MobileNav";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -57,7 +58,7 @@ const Navbar = () => {
         if (hideNavbar) {
           gsap.to(navRef.current, {
             yPercent: isScrollingDown ? -100 : 0,
-            autoAlpha: isScrollingDown ? 0 : 1, // This line should be conditional
+            autoAlpha: isScrollingDown ? 0 : 1,
             ease: "power1.out",
             duration: 1,
           });
@@ -95,36 +96,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      id="navbar"
-      ref={navRef}
-      className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-10 lg:px-16 lg:py-14 py-7 transition-colors duration-300 ${navBackground}`}
-      role="navigation"
-    >
-      <Link to="/" onClick={handleLogoClick}>
-        <img src={Logo} alt="Company logo" className="w-36 h-auto" />
-      </Link>
-      <div className="flex gap-6 lg:gap-20 text-md font-bold">
-        <Link
-          to="/"
-          className="text-white hover:text-house-bluelight transition duration-200"
-        >
-          About
+    <>
+      <nav
+        id="navbar"
+        ref={navRef}
+        className={`fixed top-0 left-0 w-full z-50 md:flex hidden justify-between items-center px-10 lg:px-16 lg:py-14 py-7 transition-colors duration-300 ${navBackground}`}
+        role="navigation"
+      >
+        <Link to="/" onClick={handleLogoClick}>
+          <img src={Logo} alt="Company logo" className="w-36 h-auto" />
         </Link>
-        <Link
-          to="/"
-          className="text-white hover:text-house-bluelight transition duration-200"
-        >
-          Services
-        </Link>
-        <Link
-          to="/"
-          className="text-white  hover:text-house-bluelight transition duration-200"
-        >
-          Contact
-        </Link>
-      </div>
-    </nav>
+        <div className="flex gap-6 lg:gap-20 text-md font-bold">
+          <Link
+            to="/"
+            className="text-white hover:text-house-bluelight transition duration-200"
+          >
+            About
+          </Link>
+          <Link
+            to="/"
+            className="text-white hover:text-house-bluelight transition duration-200"
+          >
+            Services
+          </Link>
+          <Link
+            to="/"
+            className="text-white  hover:text-house-bluelight transition duration-200"
+          >
+            Contact
+          </Link>
+        </div>
+      </nav>
+      <nav className="md:hidden">
+        <MobileNav />
+      </nav>
+    </>
   );
 };
 
