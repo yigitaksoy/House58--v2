@@ -56,11 +56,16 @@ const Navbar = () => {
   const handleLogoClick = (event) => {
     if (location.pathname === "/") {
       event.preventDefault();
-      gsap.to(window, {
-        duration: 1.6,
-        scrollTo: { y: 0, autoKill: false },
-        ease: "power4.inOut",
-      });
+
+      // Check if the scroll position is already at the top
+      if (window.scrollY !== 0) {
+        // If not at the top, then scroll to the top with animation
+        gsap.to(window, {
+          duration: 1.6,
+          scrollTo: { y: 0, autoKill: false },
+          ease: "power4.inOut",
+        });
+      }
     } else {
       navigate("/");
     }
