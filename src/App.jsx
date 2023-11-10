@@ -13,11 +13,9 @@ function App() {
   return (
     <div className="font-objektiv">
       <BrowserRouter>
-        <AnimatePresence>
-          <header className="sticky top-0 z-50">
-            <Navbar />
-          </header>
-        </AnimatePresence>
+        <header className="sticky top-0 z-50">
+          <Navbar />
+        </header>
         <ScrollTop />
         <AnimatePresence mode="wait">
           <main className="relative isolate flex w-full flex-col bg-house-black mt-2 pt-14 overflow-hidden">
