@@ -1,68 +1,57 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { motion, useScroll } from "framer-motion";
-import LogoWhite from "../assets/images/logos/house58.png";
-import LogoBlack from "../assets/images/logos/house58-black.png";
+import Logo from "../assets/images/logos/house58.png";
 
 gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-  const [navColorClass, setNavColorClass] = useState("text-house-black");
-  const [navLogo, setNavLogo] = useState(LogoWhite);
   const navRef = useRef();
+  const [navBackground, setNavBackground] = useState("bg-transparent");
   const prevScrollY = useRef(0);
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Update nav appearance based on intersection
-        if (entry.isIntersecting) {
-          setNavColorClass("text-white");
-          setNavLogo(LogoWhite);
-        } else {
-          setNavColorClass("text-house-black");
-          setNavLogo(LogoBlack);
-        }
-      },
-      {
-        root: null, // viewport
-        threshold: 0.1, // Trigger when 50% of the hero section is visible
-      },
-    );
+  useLayoutEffect(() => {
+    // GSAP animation for fade in on mount
+    gsap.set(navRef.current, { autoAlpha: 1 });
 
-    // Start observing the hero section
-    const heroSection = document.getElementById("hero");
-    if (heroSection) {
-      observer.observe(heroSection);
-    }
+    gsap.from(navRef.current, {
+      autoAlpha: 0,
+      duration: 0.5,
+      delay: 0.5,
+      ease: "power4.out",
+    });
 
-    // Clean up observer on unmount
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      const isTop = window.scrollY < 50;
+
+      // Show or hide navbar based on scroll direction
+      gsap.to(navRef.current, {
+        yPercent: currentScrollY > prevScrollY.current && !isTop ? -100 : 0,
+        ease: "power1.out",
+        duration: 0.6,
+      });
+
+      // Update navbar background based on scroll position
+      setNavBackground(
+        currentScrollY > 50 ? "bg-house-black" : "bg-transparent",
+      );
+
+      prevScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      gsap.killTweensOf(navRef.current); // Kills any ongoing animations on the navbar
     };
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if we're at the top of the page
-      if (window.scrollY === 0) {
-        setHidden(false); // Always show the navbar at the top of the page
-      } else {
-        setHidden(scrollY.current > prevScrollY.current);
-      }
-      prevScrollY.current = scrollY.current;
-    };
-
-    const unsubscribe = scrollY.onChange(handleScroll);
-
-    return () => unsubscribe();
-  }, [scrollY]);
 
   const handleLogoClick = (event) => {
     if (location.pathname === "/") {
@@ -77,61 +66,37 @@ const Navbar = () => {
     }
   };
 
-  const variants = {
-    visible: { opacity: 1, y: 0 },
-    hidden: { opacity: 0, y: -25 },
-  };
-
   return (
-    <motion.nav
+    <nav
       id="navbar"
       ref={navRef}
-      variants={variants}
-      initial={{ opacity: 0 }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
-      className={`fixed top-14 w-full z-50 lg:px-10 flex justify-between items-center h-10 lg:pl-28 lg:pr-20 bg-transparent ${navColorClass}`}
+      className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-10 lg:px-16 py-7 transition-colors duration-300 ${navBackground}`}
       role="navigation"
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="flex justify-start items-center w-full lg:w-auto"
-      >
+      <Link to="/" onClick={handleLogoClick}>
+        <img src={Logo} alt="Company logo" className="w-36 h-auto" />
+      </Link>
+      <div className="flex gap-6 lg:gap-20 text-md font-bold">
         <Link
           to="/"
-          className={`object-fit  transition duration-300 ${navColorClass}`}
-          onClick={handleLogoClick}
+          className="text-white hover:text-house-bluelight transition duration-200"
         >
-          <motion.img
-            src={navLogo}
-            alt="logo"
-            className="object-fit w-36 h-18 transition duration-300"
-          />
+          About
         </Link>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="flex justify-end items-center gap-4 md:gap-8 pr-4 md:pr-10 w-full lg:w-auto"
-      >
         <Link
-          to="/services"
-          className={`hover:text-house-bluelight transition font-heavy duration-300 ${navColorClass}`}
+          to="/"
+          className="text-white hover:text-house-bluelight transition duration-200"
         >
           Services
         </Link>
         <Link
-          to="/contact"
-          className={`hover:text-house-bluelight transition font-heavy duration-300 ${navColorClass}`}
+          to="/"
+          className="text-white  hover:text-house-bluelight transition duration-200"
         >
           Contact
         </Link>
-      </motion.div>
-    </motion.nav>
+      </div>
+    </nav>
   );
 };
 
