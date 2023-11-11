@@ -149,7 +149,10 @@ const MobileNav = () => {
                   <div className="h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition duration-200 origin-center"></div>
                 </div>
               </a>
-              <a href="mailto:hello@house58.nl" aria-label="Email">
+              <a
+                href="mailto:hello@house58.nl?subject=Lets%20Start%20a%20Project"
+                aria-label="Email"
+              >
                 <div
                   className={`group p-6 w-fit cursor-pointer transition ${
                     open ? "" : "translate-x-[80px] duration-300"
