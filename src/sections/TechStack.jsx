@@ -34,7 +34,7 @@ export default function Stack({ centered = false }) {
       className="relative isolate bg-white py-16 sm:py-28 md:py-32"
     >
       <GridPattern
-        className="absolute inset-0 -z-10 h-full w-full fill-neutral-50 stroke-neutral-950/5 md:stroke-none [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
+        className="absolute inset-0 -z-10 h-full w-full fill-neutral-100 stroke-neutral-950/5 md:stroke-none [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
         yOffset={-256}
         interactive
       />
@@ -57,8 +57,8 @@ export default function Stack({ centered = false }) {
             role="list"
             className="mt-10 grid grid-cols-2 gap-x-10 gap-y-10 lg:grid-cols-5"
           >
-            {techStack.map((tech, index) => (
-              <li key={index}>
+            {techStack.map((tech) => (
+              <li key={tech.alt}>
                 <FadeIn>
                   <img
                     src={tech.img}
