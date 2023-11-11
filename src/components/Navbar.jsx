@@ -106,7 +106,7 @@ const Navbar = () => {
         <Link to="/" onClick={handleLogoClick}>
           <img src={Logo} alt="Company logo" className="w-36 h-auto" />
         </Link>
-        <div className="flex gap-6 lg:gap-20 text-md font-bold">
+        <div className="flex gap-6 lg:gap-20 text-md">
           <Link
             to="/"
             className="text-white hover:text-house-bluelight transition duration-200"
