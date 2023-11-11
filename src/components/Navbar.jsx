@@ -47,8 +47,8 @@ const Navbar = () => {
         });
       } else {
         gsap.to(navRef.current, {
-          paddingTop: "1.3rem",
-          paddingBottom: "1.3rem",
+          paddingTop: "1.6rem",
+          paddingBottom: "1.6rem",
           autoAlpha: 1,
           ease: "power1.out",
           duration: 0.6,
