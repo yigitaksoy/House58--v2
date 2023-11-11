@@ -46,7 +46,7 @@ const Services = () => {
     };
   }, []);
   return (
-    <div ref={servicesRef}>
+    <div ref={servicesRef} id="services">
       <div ref={titleRef}>
         <SectionIntro
           eyebrow="Services"
