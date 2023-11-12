@@ -91,7 +91,7 @@ const MobileNav = () => {
           id="overlay-nav-layout"
           className="nav-side bg-house-black w-full h-full translate-x-[140%] relative pointer-events-auto"
         >
-          <div className="nav-round absolute left-0 -translate-x-1/2 h-[110vh] translate-y-[-5vh] rounded-[100%/100%] w-[80%] bg-house-black top-0"></div>
+          <div className="nav-round absolute left-0 -translate-x-1/2 h-[110vh] translate-y-[-5vh] rounded-[100%/100%] w-[80%] bg-house-bluelight top-0"></div>
           <div className="nav-links pointer-events-auto fixed top-0 right-0 z-20 flex h-full w-full max-w-lg flex-col justify-between bg-house-black pt-[clamp(3.5rem,10vh,5rem)] pb-12 text-6xl text-white">
             <div className="px-[clamp(1.25rem,3vw,2.5rem)]">
               <span className="text-sm text-neutral-500">Navigation</span>
